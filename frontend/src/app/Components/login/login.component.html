@@ -1,0 +1,44 @@
+<div>
+  <h2>Signin to your Account</h2>
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': ctrl.email.errors && ctrl.email.dirty }"
+      />
+      <div *ngIf="ctrl.email.errors && ctrl.email.dirty">
+        <div *ngIf="ctrl.email.errors.required" class="text-muted">
+          Email id is required
+        </div>
+        <div *ngIf="ctrl.email.errors.email" class="text-muted">
+          Email is not valid
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label
+      ><input
+        type="password"
+        id="password"
+        class="form-control"
+        formControlName="password"
+        [ngClass]="{
+          'is-invalid': ctrl.password.dirty && ctrl.password.errors
+        }"
+      />
+      <div *ngIf="ctrl.password.dirty && ctrl.password.errors">
+        <div *ngIf="ctrl.password.errors.required" class="text-muted">
+          Password is required
+        </div>
+        <div *ngIf="ctrl.password.errors.minlength" class="text-muted">
+          Password must be atleast 6 characters long
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Signin</button>
+  </form>
+</div>
